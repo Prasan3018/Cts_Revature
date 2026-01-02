@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Todo List</title>
+</head>
+
+<body>
+    <h2>To do list</h2>
+    <label> enter your task : </label>
+    <input id="task" type="text" placeholder="type here">
+    <button onclick="adding()">Add</button>
+
+    <ul id="list"></ul>
+    <script>
+        var tasks = [];
+
+        function adding() {
+            var taskAdded = document.getElementById("task").value;
+            tasks.push(taskAdded);
+            displayTasks();
+            document.getElementById("task").value = "";
+        }
+
+        function displayTasks() {
+            var listedTask = document.getElementById("list")
+            listedTask.innerHTML = "";
+
+
+            for (var i = 0; i < tasks.length; i++) {
+                var li = document.createElement("li");
+                li.textContent = tasks[i];
+                listedTask.appendChild(li);
+            }
+        }
+    </script>
+</body>
+
+</html>
