@@ -115,7 +115,7 @@ public class JavaAssignment1 {
 		scan.close();
 	}
 }
-}
+
 	
 	
 
