@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <title>Space Launch Information Dashboard</title>
+</head>
+
+<body>
+
+    <h2>SpaceX Launch Details</h2>
+    <button onclick="loadLaunch()">Load Latest Launch</button>
+
+    <p id="loading"></p>
+
+    <div id="launchDetails"></div>
+
+    <script>
+        async function loadLaunch() {
+
+            let loadingText = document.getElementById("loading");
+            let details = document.getElementById("launchDetails");
+
+            loadingText.textContent = "Loading...";
+            details.innerHTML = "";
+
+            try {
+                let response = await fetch("https://api.spacexdata.com/v4/launches/latest");
+                let data = await response.json();
+
+                loadingText.textContent = "";
+
+                details.innerHTML = `
+                    <h3>Mission Name:</h3>
+                    <p>${data.name}</p>
+                `;
+            }
+            catch (error) {
+                loadingText.textContent = "";
+                details.textContent = "Error loading launch data";
+                console.log("error while fetching users " + error);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
