@@ -1,0 +1,21 @@
+package com.example.demo.exception;
+
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+public class GlobalExceptionHandler {
+	
+	// 404 means resource not found
+	
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<ApiError> handleNotFound(ResourceNotFoundException ex, HttpServletRequest req) {
+        ApiError err = new ApiError();
+        err.setTimestamp(LocalDateTime.now());
+        err.setStatus(HttpStatus.NOT_FOUND.value());
+        err.setError("NOT_FOUND");
+        err.setMessage(ex.getMessage());
+        err.setPath(req.getRequestURI());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err); 
+
+}

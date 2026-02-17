@@ -1,0 +1,2 @@
+spring.application.name=Thymeleaf-demo
+serer.port=8013
